@@ -1,0 +1,48 @@
+<br>
+    <label>Select a Report
+    <br>
+    
+    <asp:DropDownList ID="SelectReport"  runat="server" Style="width:513px;" autopostback="true" OnSelectedIndexChanged="SelectReport_SelectedIndexChanged"><asp:ListItem Selected="True" Text="None" Value="None"/>
+        <asp:ListItem Text="Employee Report Alphabetical Order" Value="employee" />
+        <asp:ListItem  Text="Student Alphabetical Order" Value="student" />
+        <asp:ListItem Text="Employee and Student Report Alphabetical Order" Value="EmployeeAndStudent" />
+        
+    </asp:DropDownList>
+        <asp:TextBox ToolTip="Name Search" id="NameSearch" runat="server" CssClass="TextBoxes" Style="width:513px;"/>
+        <asp:Button ID="searchbutton" runat="server" Text="Search" OnClick="searchbutton_Click"  CssClass="myButton3" Style="width:513px;"/>
+
+    			
+    <br>	
+    <label>
+	<br>
+        <div id="gridmargin">
+	   <asp:GridView ID="viewReport" runat="server" ForeColor="#333333" CssClass="GridViewClass" Style="margin-left:-96%;"  
+             AutoGenerateColumns="false" ShowFooter="false"  Width="1550" GridLines="Horizontal" OnPageIndexChanging="viewReport_PageIndexChanging" allowpostback="true" PageSize="50" AllowPaging="True" AllowSorting="true" >
+            <AlternatingRowStyle BackColor="White"  />
+        <EditRowStyle BackColor="#2461BF" />
+		<RowStyle HorizontalAlign="center"></RowStyle>
+        <FooterStyle BackColor="#EFF3FB" Font-Bold="True" />
+        <HeaderStyle BackColor="#002F5D" Font-Bold="True" ForeColor="White" CssClass="CellStyle" />
+        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+        <RowStyle BackColor="#EFF3FB" />
+        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+        <Columns>
+            <asp:BoundField DataField="rowname" HeaderText="Name" SortExpression="rowname" ><ItemStyle CssClass="CellStyle" /></asp:BoundField>
+            <asp:BoundField DataField="rowname" HeaderText="Phone" SortExpression="rowname" ><ItemStyle CssClass="CellStyle" /></asp:BoundField>
+            <asp:BoundField DataField="rowname" HeaderText="License" SortExpression="rowname" ><ItemStyle CssClass="CellStyle" /></asp:BoundField>
+            <asp:BoundField DataField="rowname" HeaderText="Car State" SortExpression="rowname" ><ItemStyle CssClass="CellStyle" /></asp:BoundField>
+			      <asp:BoundField DataField="rowname" HeaderText="Completed" SortExpression="rowname" ><ItemStyle CssClass="CellStyle" /></asp:BoundField>
+            <asp:BoundField DataField="rowname" HeaderText="Owner State" SortExpression="rowname" ><ItemStyle CssClass="CellStyle" /></asp:BoundField>
+            <asp:BoundField DataField="rowname" HeaderText="License" SortExpression="rowname" ><ItemStyle CssClass="CellStyle" /></asp:BoundField>
+            <asp:BoundField DataField="rowname" HeaderText="Sticker" SortExpression="rowname" ><ItemStyle CssClass="CellStyle" /></asp:BoundField>	
+		</Columns>					
+        </asp:GridView>								
+    </label>
+        </div>
+ </div>
+
+<asp:HiddenField ID="range1valfield" runat="server" />
+<asp:HiddenField ID="range2valfield" runat="server" />
+        <div id="NoAccess" runat="server" visible="false">
+    <i>Sorry you don't have access to this page. Please contact the Solutions Center if this is an error.</i>
+</div>

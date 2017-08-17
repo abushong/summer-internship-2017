@@ -1,3 +1,6 @@
+<!-- Looks at student ID and current year to display the potential upcoming terms in the dropdown for each student. Depending on which
+	term is selected it will load that term's books in the affiliated Barnes and Noble website -->
+
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 
     <ContentTemplate>			

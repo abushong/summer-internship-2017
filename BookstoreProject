@@ -1,0 +1,44 @@
+<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+
+    <ContentTemplate>			
+     <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:(removed for security)%>"
+        SelectCommand="select *, rowname + LEFT(@SelectedTerm,2) as 'YearCode' table where rowname in (select top 1 rowname from table where [rowname] = @CurrentName ) and rowname = @SelectedTerm and rowname in ('N', 'A')">
+		<SelectParameters>
+            <asp:ControlParameter Name="SelectedTerm" ControlID="SelectTerm" PropertyName="SelectedValue" DbType="String" />
+        </SelectParameters>
+		<SelectParameters>
+            <asp:ControlParameter Name="CurrentName" ControlID="usernamelbl" PropertyName="Text" DbType="String" />
+        </SelectParameters>			
+    </asp:SqlDataSource>
+
+	<asp:SqlDataSource ID="SQLDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:(removed for security)%>"
+        SelectCommand="select distinct (rowname) as 'Term' from tablename where rowname in (select top 1 rowname from tablename where [rowname] = @CurrentName) and rowname > GETDATE() and rowname in ('N', 'A')">
+		<SelectParameters>
+            <asp:ControlParameter Name="CurrentName" ControlID="usernamelbl" PropertyName="Text" DbType="String" />
+        </SelectParameters>			
+    </asp:SqlDataSource>
+		<asp:DropDownList id="SelectTerm" runat="server" DataSourceID="SQLDataSource2" DataTextField="Term" DataValueField="Term" AppendDataBoundItems="true" AutoPostBack="true">
+            <asp:ListItem Value="">Select a Term</asp:ListItem>
+        </asp:DropDownList>	
+			
+		<input type="hidden" name="catalogId" value="10001"/>
+		<input type="hidden" name="storeId" value="65216" />
+		<input type="hidden" name="termMapping" value="N" />
+		<input type="hidden" name="courseXml" value='<?xml version="1.0" encoding="UTF-8"?>
+				<textbookorder><courses>
+                    <asp:Repeater ID="Repeater1" runat="server"  DataSourceID="SqlDataSource1" >
+                        <ItemTemplate>
+                            <course dept="<%# Eval("rowname") %>" num="<%# Eval("rowname") %>" sect="<%# Eval("rowname") %>" term="<%# Eval("rowname") %>" />
+                        </ItemTemplate>
+                    </asp:Repeater>
+				</courses></textbookorder>'/>	
+            <br>    
+          				
+		</ContentTemplate>
+        </asp:UpdatePanel>	
+				<asp:UpdateProgress ID="updateProgress1" runat="server">
+                 <ProgressTemplate>
+                   <img id="spinner" src="ajaxSpinner.gif"/>
+                 </ProgressTemplate>
+            </asp:UpdateProgress> 

@@ -1,3 +1,6 @@
+<!--Displays an dropdown that allows the user to select which type of vehicle report will be shown in table format.
+	The backend vb file handles what the user selection of the dropdown. -->
+
 <br>
     <label>Select a Report
     <br>
